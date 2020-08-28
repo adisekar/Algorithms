@@ -1,0 +1,11 @@
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\Algorithms.deps.json
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\Algorithms.dll
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\Algorithms.pdb
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.csprojAssemblyReference.cache
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.AssemblyInfoInputs.cache
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.AssemblyInfo.cs
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.dll
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.pdb
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\DS.dll
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\DS.pdb
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.csproj.CopyComplete
