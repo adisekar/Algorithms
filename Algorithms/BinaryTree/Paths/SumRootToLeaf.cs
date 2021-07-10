@@ -7,33 +7,41 @@ namespace Algorithms.BinaryTree
 {
     public class SumRootToLeaf
     {
-        private static int sum = 0;
-        //private static string str = "";
-        public static int SumNumbers(TreeNode root)
+        public int SumNumbers(TreeNode root)
         {
-            DFS(root, "");
+            List<List<int>> paths = new List<List<int>>();
+            List<int> path = new List<int>();
+            FindPaths(root, path, paths);
+
+            int sum = 0;
+            foreach (var curPath in paths)
+            {
+                string curPathSum = "";
+                foreach (var val in curPath)
+                {
+                    curPathSum += val;
+                }
+                sum += Convert.ToInt32(curPathSum);
+            }
             return sum;
         }
 
-        private static void DFS(TreeNode root, string str)
+        private void FindPaths(TreeNode root, List<int> path, List<List<int>> paths)
         {
-            if (root == null || root.value == -1)
+            if (root == null) { return; }
+
+            if (root.left == null && root.right == null)
             {
+                path.Add(root.value);
+                paths.Add(new List<int>(path));
+                path.RemoveAt(path.Count - 1);
                 return;
             }
 
-            str += root.value;
-
-            if (root.left == null && root.right == null && str.Length > 0)
-            {
-                int currentPathVal = Convert.ToInt32(str);
-                sum += currentPathVal;
-
-                str = str.Remove(str.Length - 1);
-            }
-            DFS(root.left, str);
-            DFS(root.right, str);
-            str = str.Length > 0 ? str.Remove(str.Length - 1) : str;
+            path.Add(root.value);
+            FindPaths(root.left, path, paths);
+            FindPaths(root.right, path, paths);
+            path.RemoveAt(path.Count - 1);
         }
     }
 }

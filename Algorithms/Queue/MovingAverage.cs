@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using DS.QueueADT;
 using System.Text;
 
 namespace Algorithms.Queue
@@ -11,17 +11,17 @@ namespace Algorithms.Queue
     public class MovingAverage
     {
         // Private fields
-        private Queue<int> q;
+        private CircularQueue q;
         private int count;
         private int maxSize;
         private double average = 0;
         private int total = 0;
         /** Initialize your data structure here. */
-        public MovingAverage(int size)
+        public MovingAverage(int N)
         {
-            q = new Queue<int>();
+            q = new CircularQueue(N);
             count = 0;
-            maxSize = size;
+            maxSize = N;
             average = 0;
             total = 0;
         }

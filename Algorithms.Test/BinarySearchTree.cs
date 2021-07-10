@@ -3,6 +3,7 @@ using Algorithms.BinaryTree;
 using System;
 using DS;
 using Algorithms.BinarySearchTree;
+using Algorithms.BinarySearchTree.Construct;
 
 namespace Algorithms.Test
 {
@@ -79,5 +80,26 @@ namespace Algorithms.Test
             Assert.AreEqual(2, result);
         }
 
+        [TestMethod]
+        public void BSTFromPreorderTraversal()
+        {
+            int[] A = { 8, 5, 1, 7, 10, 12 };
+            BSTFromPreorder bst = new BSTFromPreorder();
+            var root = bst.BstFromPreorderRecursive(A);
+
+            DepthFirstSearch.PreOrder(root);
+            
+        }
+
+        [TestMethod]
+        public void ValidateBST()
+        {
+            int[] array = { 5, 1, 4, -1, -1, 3, 6 };
+            var root = Construction.CreateTree(array);
+            ValidBST bst = new ValidBST();
+
+            var result = bst.IsValidBST(root);
+            Assert.AreEqual(true, result);
+        }
     }
 }

@@ -3,12 +3,29 @@ using System.Collections.Generic;
 using System;
 using Algorithms.Strings;
 using Algorithms.Strings.Conversion;
+using Algorithms.Strings.Palindrome;
 
 namespace Algorithms.Test
 {
     [TestClass]
     public class Strings
     {
+
+        [TestMethod]
+        public void IsPalindrome()
+        {
+            string s = "A man, a plan, a canal: Panama";
+            ValidPalindrome palindrome1 = new ValidPalindrome();
+            bool result = palindrome1.IsPalindrome(s);
+            // "amanaplanacanalpanama" is a palindrome.
+            Assert.AreEqual(true, result);
+
+            string s2 = "0P";
+            ValidPalindrome palindrome2 = new ValidPalindrome();
+            bool result2 = palindrome2.IsPalindrome(s2);
+            Assert.AreEqual(false, result2);
+        }
+
         [TestMethod]
         public void IsRotation()
         {
@@ -33,6 +50,48 @@ namespace Algorithms.Test
             int val = 49;
             var result = IntToRomanConversion.IntToRoman(val);
             Assert.AreEqual("XLIX", result);
+        }
+
+        [TestMethod]
+        public void Compress()
+        {
+            char[] chars = { 'a', 'a', 'a', 'b', 'b', 'a', 'a' };
+            var result = Compression.Compress(chars);
+            Console.WriteLine(result);
+            //foreach(var c in result)
+            //{
+            //    Console.WriteLine(c);
+            //}
+        }
+
+
+        [TestMethod]
+        public void ReverseString2()
+        {
+            char[] chars = { 't', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e' };
+            ReverseWordsInString reverseWordsInString = new ReverseWordsInString();
+            reverseWordsInString.ReverseWords2(chars);
+            foreach (var c in chars)
+            {
+                Console.Write(c);
+            }
+        }
+
+        [TestMethod]
+        public void FindLongestCommonSubstring()
+        {
+            string s1 = "ABAB";
+            string s2 = "BABA";
+            string result = LongestCommonSubstring.FindLongest(s1, s2);
+            Assert.AreEqual("ABA", result);
+        }
+
+        [TestMethod]
+        public void DecodeString()
+        {
+            string s = "3[a]2[bc]";
+            var result = Decode.DecodeString(s);
+            Assert.AreEqual("aaabcbc", result);
         }
 
         [TestMethod]
@@ -97,21 +156,25 @@ namespace Algorithms.Test
         [TestMethod]
         public void LongestPalindromeSubstr()
         {
+            //string s = "babad";
+            //var result = LongestPalindrome.Substring_ExpandCenter(s);
+            //Assert.AreEqual("bab", result);
+
+            //string s2 = "cbbd";
+            //var result2 = LongestPalindrome.Substring_ExpandCenter(s2);
+            //Assert.AreEqual("bb", result2);
+
             string s = "babad";
-            var result = LongestPalindrome.Substring_ExpandCenter(s);
+            var result = LongestPalindrome.Substring_BF(s);
             Assert.AreEqual("bab", result);
 
-            string s2 = "cbbd";
-            var result2 = LongestPalindrome.Substring_ExpandCenter(s2);
-            Assert.AreEqual("bb", result2);
+            string s4 = "abcba";
+            var result4 = LongestPalindrome.Substring_BF(s4);
+            Assert.AreEqual("abcba", result4);
 
-            //string s = "abb";
-            //var result = LongestPalindrome.Substring_BF(s);
-            //Assert.AreEqual("bb", result);
-
-            string s3 = "bb";
-            var result3 = LongestPalindrome.Substring_ExpandCenter(s3);
-            Assert.AreEqual("bb", result3);
+            //string s3 = "bb";
+            //var result3 = LongestPalindrome.Substring_ExpandCenter(s3);
+            //Assert.AreEqual("bb", result3);
         }
 
         [TestMethod]

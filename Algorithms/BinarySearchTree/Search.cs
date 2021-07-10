@@ -9,47 +9,47 @@ namespace Algorithms.BinarySearchTree
     {
         public static TreeNode SearchBSTRecursive(TreeNode root, int target)
         {
+            // Recursive
             if (root == null)
             {
-                return root;
+                return null;
             }
 
             if (root.value == target)
             {
                 return root;
             }
+
+            if (root.value < target)
+            {
+                return SearchBSTRecursive(root.right, target);
+            }
             else
             {
-                if (root.value > target)
-                {
-                    return SearchBSTRecursive(root.left, target);
-                }
-                else
-                {
-                    return SearchBSTRecursive(root.right, target);
-                }
+                return SearchBSTRecursive(root.left, target);
             }
         }
 
         public static TreeNode SearchBSTIterative(TreeNode root, int target)
         {
-            if (root == null)
+            // Iterative
+            while (root != null)
             {
-                return root;
-            }
-
-            while (root != null && root.value != target)
-            {
-                if (root.value > target)
+                if (root.value == target)
                 {
-                    root = root.left;
+                    return root;
                 }
-                else
+
+                if (root.value < target)
                 {
                     root = root.right;
                 }
+                else
+                {
+                    root = root.left;
+                }
             }
-            return root;
+            return null;
         }
     }
 }

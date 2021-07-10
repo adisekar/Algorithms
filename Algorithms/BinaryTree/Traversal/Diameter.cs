@@ -24,8 +24,9 @@ namespace Algorithms.BinaryTree.Traversal
             // For path not passing thru root
             int lDiameter = DiameterOfBinaryTree(root.left);
             int rDiameter = DiameterOfBinaryTree(root.right);
-            int max = Math.Max(left + right, Math.Max(lDiameter, rDiameter));
-            return max;
+
+            int fullDiameter = Math.Max(left + right, Math.Max(lDiameter, rDiameter));
+            return fullDiameter;
         }
 
         private static int Height(TreeNode root)
@@ -38,8 +39,7 @@ namespace Algorithms.BinaryTree.Traversal
             int left = Height(root.left);
             int right = Height(root.right);
 
-            int max = Math.Max(left, right);
-            return max + 1;
+           return Math.Max(left, right) + 1;
         }
 
         // O(N) Best Solution

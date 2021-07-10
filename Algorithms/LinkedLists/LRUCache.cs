@@ -6,107 +6,114 @@ namespace Algorithms.LinkedLists
 {
     public class LRUCache
     {
-        private Dictionary<int, DListNode> map = new Dictionary<int, DListNode>();
-        public DListNode head;
-        private DListNode tail;
+        public DNode head;
+        private DNode tail;
+        private Dictionary<int, DNode> map;
         private int size;
-        private int capacity;
+
+        // Insert at tail (MRU)
+        // Delete at head (LRU)
+
 
         public LRUCache(int capacity)
         {
-            this.capacity = capacity;
-            this.size = 0;
-        }
-        public List<int> PrintList(DListNode head = null)
-        {
-            List<int> result = new List<int>();
-            DListNode temp = null;
-            if (head == null)
-            {
-                temp = this.head;
-            }
-            else
-            {
-                temp = head;
-            }
-
-            while (temp != null)
-            {
-                result.Add(temp.val);
-                temp = temp.next;
-            }
-            return result;
-        }
-
-        public void AddNode(DListNode newNode)
-        {
-            if (tail == null)
-            {
-                tail = newNode;
-                head = newNode;
-            }
-            else
-            {
-                tail.next = newNode;
-                newNode.prev = tail;
-                tail = newNode;
-            }
-            size++;
-        }
-
-        public void MoveToTop(DListNode node)
-        {
-            if (node == head)
-            {
-                head = head.next;
-                head.prev = null;
-            }
-            else
-            {
-                node.prev = node.next;
-                node.next.prev = node.prev;
-            }
-
-            tail.next = node;
-            node.prev = tail;
-            tail = node;
-        }
-
-        public void RemoveNode()
-        {
-            if (head == null)
-            {
-                return;
-            }
-            else
-            {
-                head = head.next;
-                head.prev = null;
-            }
-            size--;
+            map = new Dictionary<int, DNode>();
+            size = capacity;
         }
 
         public int Get(int key)
         {
             if (map.ContainsKey(key))
             {
-                MoveToTop(map[key]);
-                return map[key].val;
+                // Move element to top of list. Easier is to delete current element and insert new element to tail of list. O(1)
+                int nodeVal = map[key].val;
+                Delete(map[key]);
+                DNode node = Insert(key, nodeVal);
+                map[key] = node;
+                return node.val;
             }
-            return -1;
+            else
+            {
+                return -1;
+            }
+
         }
 
         public void Put(int key, int value)
         {
-            DListNode newNode = new DListNode(key, value);
-
-            if (size > capacity)
-            { // evict first added item
-                RemoveNode();
-                map.Remove(key);
+            // If size = map elements, and it is a new key, remove from map
+            if (size == map.Count && !map.ContainsKey(key))
+            {
+                if (this.head != null)
+                {
+                    DNode toRemoveNode = map[this.head.key];
+                    this.head = toRemoveNode.next;
+                    toRemoveNode.prev = null;
+                    if (toRemoveNode.next != null)
+                    {
+                        toRemoveNode.next.prev = null;
+                    }
+                    map.Remove(toRemoveNode.key);
+                }
             }
-            map.Add(key, newNode);
-            AddNode(newNode);
+
+            if (map.ContainsKey(key))
+            {
+                Delete(map[key]);
+                DNode node = Insert(key, value);
+                map[key] = node;
+            }
+            else
+            {
+                DNode node = Insert(key, value);
+                map.Add(key, node);
+            }
+        }
+
+        private DNode Insert(int key, int val)
+        {
+            DNode node = new DNode(key, val);
+            if (tail == null)
+            {
+                tail = node;
+            }
+            else
+            {
+                tail.next = node;
+                node.prev = tail;
+                tail = node;
+            }
+
+            if (head == null)
+            {
+                head = node;
+            }
+            return node;
+        }
+
+        private void Delete(DNode node)
+        {
+            // Do null checks. And update head and tail
+            if (node != null && node.prev != null)
+            {
+                node.prev.next = node.next;
+            }
+
+            if (node != null && node.next != null)
+            {
+                node.next.prev = node.prev;
+            }
+
+
+            if (head == node)
+            {
+                head = node.next;
+            }
+
+            if (tail == node)
+            {
+                tail = tail.prev;
+            }
         }
     }
 
@@ -117,13 +124,13 @@ namespace Algorithms.LinkedLists
      * obj.Put(key,value);
      */
 
-    public class DListNode
+    public class DNode
     {
         public int key { get; set; }
         public int val { get; set; }
-        public DListNode next { get; set; }
-        public DListNode prev { get; set; }
-        public DListNode(int key, int val)
+        public DNode next { get; set; }
+        public DNode prev { get; set; }
+        public DNode(int key, int val)
         {
             this.key = key;
             this.val = val;

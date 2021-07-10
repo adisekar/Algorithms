@@ -41,11 +41,6 @@ Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-
         public static int MaxProfit2(int[] prices)
         {
             int n = prices.Length;
-            if (n == 0)
-            {
-                return 0;
-            }
-
             int max = 0;
             int current = 0;
 

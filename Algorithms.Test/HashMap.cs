@@ -50,6 +50,28 @@ namespace Algorithms.Test
         }
 
         [TestMethod]
+        public void TimeMapTest()
+        {
+            TimeMap kv = new TimeMap();
+            kv.Set("foo", "bar", 1); // store the key "foo" and value "bar" along with timestamp = 1   
+            Console.WriteLine(kv.Get("foo", 1));  // output "bar"   
+            Console.WriteLine(kv.Get("foo", 3)); // output "bar" since there is no value corresponding to foo at timestamp 3 and timestamp 2, then the only value is at timestamp 1 ie "bar"   
+            kv.Set("foo", "bar2", 4);
+            Console.WriteLine(kv.Get("foo", 4)); // output "bar2" 
+            Console.WriteLine(kv.Get("foo", 5)); //output "bar2
+
+            Console.WriteLine("--------------------");
+            TimeMap kv2 = new TimeMap();
+            kv2.Set("love", "high", 10);
+            kv2.Set("love", "low", 20);
+            Console.WriteLine(kv2.Get("love", 5));
+            Console.WriteLine(kv2.Get("love", 10));
+            Console.WriteLine(kv2.Get("love", 15));
+            Console.WriteLine(kv2.Get("love", 20));
+            Console.WriteLine(kv2.Get("love", 25));
+        }
+
+        [TestMethod]
         public void CommonChars()
         {
             string[] words = { "bella", "label", "roller" };

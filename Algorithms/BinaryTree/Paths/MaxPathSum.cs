@@ -17,6 +17,7 @@ namespace Algorithms.BinaryTree
         public static int GetMaxPathSum(TreeNode root)
         {
             GetMaxPathSumHelper(root);
+            PostOrder(root);
             return result;
         }
         public static int GetMaxPathSumHelper(TreeNode root)
@@ -37,5 +38,36 @@ namespace Algorithms.BinaryTree
             result = Math.Max(maxSum2, result);
             return maxSum;
         }
-    }
+
+        // Use this approach than above, it is easier
+        // Post order traversal
+        private static int PostOrder(TreeNode node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+
+            // Go left and right child
+            int left = PostOrder(node.left);
+            int right = PostOrder(node.right);
+
+            // Upper bound negative values to 0, as negative value when added to cur node value will be negative, but we want to ignore that path    
+            if (left < 0)
+            {
+                left = 0;
+            }
+
+            if (right < 0)
+            {
+                right = 0;
+            }
+
+            int curMaxPathSum = left + right + node.value;
+            result = Math.Max(result, curMaxPathSum);
+
+            // Take either left or right path along with node val
+            return Math.Max(left, right) + node.value;
+        }
+    }   
 }

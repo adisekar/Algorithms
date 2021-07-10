@@ -71,6 +71,11 @@ namespace Algorithms.Graph.Grid
             DFS(grid, i, j - 1);
         }
 
+        private static bool isValid(int row, int col, int H, int W)
+        {
+            return row >= 0 && row < H && col >= 0 && col < W;
+        }
+
         public static int NumIslandsBFS(char[][] grid)
         {
             if (grid == null || grid.Length == 0 || grid[0].Length == 0)
@@ -103,7 +108,7 @@ namespace Algorithms.Graph.Grid
                                 int newX = cell.X + dir[0];
                                 int newY = cell.Y + dir[1];
 
-                                if ((newX >= 0 && newX < grid.Length) && (newY >= 0 && newY < grid[i].Length) &&
+                                if (isValid(newX, newY, grid.Length, grid[0].Length) &&
                                     grid[newX][newY] == '1')
                                 {
                                     queue.Enqueue(new Coordinates(newX, newY));

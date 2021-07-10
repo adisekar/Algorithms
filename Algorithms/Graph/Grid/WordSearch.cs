@@ -80,25 +80,15 @@ Given word = "ABCB", return false.     * */
         */
         public IList<string> FindWords(char[][] board, string[] words)
         {
-            HashSet<string> result = new HashSet<string>();
-
+            IList<string> result = new List<string>();
             foreach (var word in words)
             {
-                for (int i = 0; i < board.Length; i++)
+                if (Exist(board, word))
                 {
-                    for (int j = 0; j < board[i].Length; j++)
-                    {
-                        if (board[i][j] == word[0])
-                        {
-                            if (DFS(board, i, j, word, 0))
-                            {
-                                result.Add(word);
-                            }
-                        }
-                    }
+                    result.Add(word);
                 }
             }
-            return result.ToList();
+            return result;
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Algorithms.LinkedLists
             ListNode result = q;
             seenSet.Add(head.val);
 
+            // q follows p
             while (p != null)
             {
                 // Duplicate element, so skip
@@ -31,14 +32,13 @@ namespace Algorithms.LinkedLists
                 {
                     // Skip p element for q
                     q.next = p.next;
-                    p = p.next;
                 }
                 else
                 {
                     seenSet.Add(p.val);
-                    p = p.next;
                     q = q.next;
                 }
+                p = p.next;
             }
             return result;
         }

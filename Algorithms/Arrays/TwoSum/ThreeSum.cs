@@ -6,46 +6,90 @@ namespace Algorithms.Arrays
 {
     public class ThreeSumPairs
     {
-        // O(n^2) solution. O(nlogn) for sorting, but asymptotilcally is O(n^2)
-        public IList<IList<int>> ThreeSum(int[] nums)
+        // Brute Force Solution
+        public IList<IList<int>> ThreeSum_BF(int[] nums)
         {
+            IList<IList<int>> result = new List<IList<int>>();
+            // To remove duplicates. Sort array, and check for contains
             Array.Sort(nums);
-
-            var result = new List<IList<int>>();
-
-            var n = nums.Length;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < nums.Length - 2; i++)
             {
-                if (i > 0 && nums[i - 1] == nums[i]) continue;
-                // Skip if num > 0, as sum cannot be 0
-                if (nums[i] > 0) { continue; }
-
-                var left = i + 1;
-                var right = n - 1;
-
-                while (left < right)
+                for (int j = i + 1; j < nums.Length - 1; j++)
                 {
-                    var sum = nums[i] + nums[left] + nums[right];
-                    if (sum == 0)
+                    for (int k = j + 1; k < nums.Length; k++)
                     {
-                        result.Add(new List<int>() { nums[i], nums[left], nums[right] });
-
-                        while (left < right && nums[left] == nums[left + 1]) left++;
-                        while (left < right && nums[right] == nums[right - 1]) right--;
-                        left++;
-                        right--;
-                    }
-                    else if (sum < 0)
-                    {
-                        left++;
-                    }
-                    else
-                    {
-                        right--;
+                        if (nums[i] + nums[j] + nums[k] == 0)
+                        {
+                            var pairs = new List<int>() { nums[i], nums[j], nums[k] };
+                            if (!CheckIfExists(result, pairs))
+                            {
+                                result.Add(pairs);
+                            }
+                        }
                     }
                 }
             }
             return result;
         }
+
+        public bool CheckIfExists(IList<IList<int>> list, List<int> pair)
+        {
+            foreach (var el in list)
+            {
+                if (el[0] == pair[0] && el[1] == pair[1] && el[2] == pair[2])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // O(n^2) solution. O(nlogn) for sorting, but asymptotilcally is O(n^2)
+        // 2 pointer. Fix one number and use 2 pointer start and end to compare
+        public IList<IList<int>> ThreeSum(int[] nums)
+        {
+            IList<IList<int>> result = new List<IList<int>>();
+            Array.Sort(nums);
+
+            for (int i = 0; i < nums.Length - 2; i++)
+            {
+
+                if (i == 0 || nums[i] > nums[i - 1])
+                {
+                    int start = i + 1;
+                    int end = nums.Length - 1;
+
+                    while (start < end)
+                    {
+                        if (nums[i] + nums[start] + nums[end] == 0)
+                        {
+                            result.Add(new List<int>() { nums[i], nums[start], nums[end] });
+                        }
+
+                        if (nums[i] + nums[start] + nums[end] < 0)
+                        {
+                            int curStart = start;
+                            // Skip duplicates
+                            while (nums[curStart] == nums[start] && start < end)
+                            {
+                                start++;
+                            }
+                        }
+                        else
+                        {          //nums[i] + nums[start] + nums[end] > 0
+                            int curEnd = end;
+                            // Skip duplicates
+                            while (nums[curEnd] == nums[end] && start < end)
+                            {
+                                end--;
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        // To Do - 3 rd approach using hashSet like 2 sum. Fix 2 numbers, and check set
     }
 }

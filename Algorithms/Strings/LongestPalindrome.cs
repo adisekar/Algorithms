@@ -6,30 +6,25 @@ namespace Algorithms.Strings
 {
     public class LongestPalindrome
     {
+        // Loop all substrings and check if palindrome from i = 0 to n and j = i to n
         public static string Substring_BF(string s)
         {
-            if (s.Length < 2)
-            {
-                return s;
-            }
-
-            string longest = s[0].ToString();
+            int bestLen = 0;
+            string bestSubstr = "";
             for (int i = 0; i < s.Length; i++)
             {
-                for (int j = i + 1; j <= s.Length; j++)
+                for (int j = i; j < s.Length; j++)
                 {
-                    string substring = s.Substring(i, j - i);
-                    if (IsPalindrome(substring))
+                    int len = j - i + 1;
+                    string sub = s.Substring(i, len);
+                    if (len > bestLen && IsPalindrome(sub))
                     {
-                        if (substring.Length > longest.Length)
-                        {
-                            longest = substring;
-                        }
+                        bestLen = len;
+                        bestSubstr = sub;
                     }
                 }
             }
-            // return longest.Length == 0 && s.Length> 0 ? s[0].ToString() : longest;
-            return longest;
+            return bestSubstr;
         }
 
         public static string Substring_ExpandCenter(string s)

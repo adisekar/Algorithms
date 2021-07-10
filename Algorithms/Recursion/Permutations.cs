@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Algorithms.Recursion
 {
-    public class Permutations
+    public class PermutationsOlder
     {
         // Time complexity - Upper bound O(n!*n^2). Space O(n*n!)
         // Roughly O(n!*n). Space O(n!*n)

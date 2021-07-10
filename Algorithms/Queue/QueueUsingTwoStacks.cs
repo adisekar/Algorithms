@@ -6,9 +6,8 @@ namespace Algorithms.Queue
 {
     public class QueueUsingTwoStacks
     {
-        private Stack<int> forwardStack { get; set; }
-        private Stack<int> reverseStack { get; set; }
-
+        Stack<int> forwardStack;
+        Stack<int> reverseStack;
         /** Initialize your data structure here. */
         public QueueUsingTwoStacks()
         {
@@ -19,13 +18,9 @@ namespace Algorithms.Queue
         /** Push element x to the back of queue. */
         public void Push(int x)
         {
-            if (forwardStack.Count == 0 && reverseStack.Count > 0)
+            while (reverseStack.Count > 0)
             {
-                while (reverseStack.Count > 0)
-                {
-                    var el = reverseStack.Pop();
-                    forwardStack.Push(el);
-                }
+                forwardStack.Push(reverseStack.Pop());
             }
             forwardStack.Push(x);
         }
@@ -33,29 +28,21 @@ namespace Algorithms.Queue
         /** Removes the element from in front of queue and returns that element. */
         public int Pop()
         {
-            if (reverseStack.Count == 0 && forwardStack.Count > 0)
+            while (forwardStack.Count > 0)
             {
-                while (forwardStack.Count > 0)
-                {
-                    var el = forwardStack.Pop();
-                    reverseStack.Push(el);
-                }
+                reverseStack.Push(forwardStack.Pop());
             }
-            return reverseStack.Pop();
+            return reverseStack.Count > 0 ? reverseStack.Pop() : -1;
         }
 
         /** Get the front element. */
         public int Peek()
         {
-            if (reverseStack.Count == 0 && forwardStack.Count > 0)
+            while (forwardStack.Count > 0)
             {
-                while (forwardStack.Count > 0)
-                {
-                    var el = forwardStack.Pop();
-                    reverseStack.Push(el);
-                }
+                reverseStack.Push(forwardStack.Pop());
             }
-            return reverseStack.Peek();
+            return reverseStack.Count > 0 ? reverseStack.Peek() : -1;
         }
 
         /** Returns whether the queue is empty. */

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Algorithms.SlidingWindow
 {
+    // Smallest subarray with given sum GREATER THAN OR EQUAL TO SUM
     public class SmallestSumKSubarray
     {
         public static int[] SmallestSubArray_BF(int[] arr, int k)
@@ -43,16 +44,12 @@ namespace Algorithms.SlidingWindow
             int minLength = int.MaxValue;
             int currentSum = 0;
             int startIndex = 0;
-            if (currentSum >= k)
-            {
-                return 1;
-            }
             int i = 0;
             while (i <= arr.Length && startIndex < arr.Length)
             {
                 if (currentSum >= k)
                 {
-                    minLength = Math.Min(i - startIndex, minLength);
+                    minLength = Math.Min(minLength, i - startIndex);
                     currentSum -= arr[startIndex];
                     startIndex++;
                 }

@@ -9,6 +9,18 @@ namespace Algorithms.Test
     public class Recursion
     {
         [TestMethod]
+        public void BasicTest()
+        {
+            int x = 3;
+            Basic.Fun1(x);
+            Console.WriteLine("------");
+            Basic.Fun2(x);
+            Console.WriteLine("------");
+            var result = Basic.Fun3(3);
+            Console.WriteLine(result);
+        }
+
+        [TestMethod]
         public void FindFactorial()
         {
             var result = Factorial.FindFactorial(4);
@@ -30,7 +42,7 @@ namespace Algorithms.Test
         {
             List<int> array = new List<int>() { 1, 2, 3 };
             //var result = Permutations.GetPermutations(array);
-            var result = Permutations.GetPermutationsBacktrack(array);
+            var result = PermutationsOlder.GetPermutationsBacktrack(array);
             foreach (var perm in result)
             {
                 foreach (var num in perm)
@@ -42,10 +54,17 @@ namespace Algorithms.Test
         }
 
         [TestMethod]
+        public void FindPermutationsInString()
+        {
+            string str = "ABC";
+            PermutationsInString.Driver(str);
+        }
+
+        [TestMethod]
         public void FindPermutationsUnique()
         {
             int[] array = new int[] { 1, 2, 2 };
-            var result = Permutations.GetPermutationsUnique(array);
+            var result = PermutationsOlder.GetPermutationsUnique(array);
             //var result = Permutations.PermuteUniqueBackTrack(array);
             foreach (var perm in result)
             {
@@ -110,6 +129,37 @@ namespace Algorithms.Test
             {
                 Console.WriteLine(word);
             }
+        }
+
+        [TestMethod]
+        public void SumOfNumbers()
+        {
+            SumOfNaturalNumbers sumOfNatural = new SumOfNaturalNumbers();
+            int n = 5;
+            int result1 = sumOfNatural.SumRecursive(n);
+            int result2 = sumOfNatural.SumIterative(n);
+            int result3 = sumOfNatural.Sum(n);
+
+            Assert.AreEqual(15, result1);
+            Assert.AreEqual(15, result2);
+            Assert.AreEqual(15, result3);
+        }
+
+        [TestMethod]
+        public void TOH()
+        {
+            TowersOfHanoi.TOH(10, 1, 2, 3);
+        }
+
+        [TestMethod]
+        public void MaxLenConcatenatedStrUnique()
+        {
+            string[] arr = { "cha", "r", "act", "ers" }; // 6
+            string[] arr2 = { "un", "iq", "ue" }; // 4
+            string[] arr3 = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p" }; // 16
+            MaxLenConcatenatedStringWithUniqueChar maxLenConcatenatedStringWithUniqueChar = new MaxLenConcatenatedStringWithUniqueChar();
+            var result = maxLenConcatenatedStringWithUniqueChar.MaxLength(arr3);
+            Assert.AreEqual(16, result);
         }
     }
 }

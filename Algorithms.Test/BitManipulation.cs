@@ -31,6 +31,23 @@ namespace Algorithms.Test
         }
 
         [TestMethod]
+        public void FindBinaryGap()
+        {
+            int n = 13;
+            BinaryGap binaryGap = new BinaryGap();
+            var result = binaryGap.FindBinaryGap(n);
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
+        public void CountPrimeNumbers()
+        {
+            int val = 10;
+            var result = Prime.CountPrimes(val);
+            Assert.AreEqual(4, result);
+        }
+
+        [TestMethod]
         public void AtoI()
         {
             string s = "42";

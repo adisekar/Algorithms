@@ -8,40 +8,64 @@ namespace Algorithms.DynamicProgramming
     {
         public static int MinimumPathSum(int[][] grid)
         {
-            int[][] dp = new int[grid.Length][];
+            int[,] dp = new int[grid.Length, grid[0].Length];
 
             for (int i = 0; i < grid.Length; i++)
             {
-                dp[i] = new int[grid[i].Length];
-            }
-
-            // Base case.
-            dp[0][0] = grid[0][0];
-
-            // For rows. Add prev row value
-            for (int i = 1; i < grid.Length; i++)
-            {
-                dp[i][0] = grid[i][0] + dp[i - 1][0];
-            }
-
-            // For columns. Add prev column value
-            for (int i = 1; i < grid[0].Length; i++)
-            {
-                dp[0][i] = grid[0][i] + dp[0][i - 1];
-            }
-
-
-            for (int i = 1; i < grid.Length; i++)
-            {
-                for (int j = 1; j < grid[0].Length; j++)
+                for (int j = 0; j < grid[0].Length; j++)
                 {
-                    // Sum of current cell in grid and cell above or left of DP which is CALCULATED
-                    int aboveCellSum = dp[i - 1][j] + grid[i][j];
-                    int leftCellSum = dp[i][j - 1] + grid[i][j];
-                    dp[i][j] = Math.Min(aboveCellSum, leftCellSum);
+                    if (i > 0 && i < grid.Length && j > 0 && j < grid[0].Length)
+                    {
+                        dp[i, j] = grid[i][j] + Math.Min(dp[i - 1, j], dp[i, j - 1]);
+                    }
+                    else if (i == 0)
+                    {
+                        // First cell
+                        if (j == 0)
+                        {
+                            dp[i, j] = grid[i][j];
+                        }
+                        else
+                        {
+                            dp[i, j] = dp[i, j - 1] + grid[i][j];
+                        }
+                    }
+                    else if (j == 0)
+                    {
+                        // First cell
+                        if (i == 0)
+                        {
+                            dp[i, j] = grid[i][j];
+                        }
+                        else
+                        {
+                            dp[i, j] = dp[i - 1, j] + grid[i][j];
+                        }
+                    }
                 }
             }
-            return dp[grid.Length - 1][grid[0].Length - 1];
+            return dp[grid.Length - 1, grid[0].Length - 1];
+        }
+
+        public int MinPathSumRecursive(int[][] grid)
+        {
+            return MinPathSumHelper(grid, 0, 0);
+        }
+
+        private int MinPathSumHelper(int[][] grid, int i, int j)
+        {
+            // Boundary cases
+            if (i >= grid.Length || j >= grid[0].Length)
+            {
+                return int.MaxValue;
+            }
+
+            // Base case
+            if (i == grid.Length - 1 && j == grid[0].Length - 1)
+            {
+                return grid[i][j];
+            }
+            return grid[i][j] + Math.Min(MinPathSumHelper(grid, i, j + 1), MinPathSumHelper(grid, i + 1, j));
         }
     }
 }

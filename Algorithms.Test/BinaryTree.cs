@@ -6,6 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Algorithms.BinaryTree.Traversal.Iterative;
+using Algorithms.BinaryTree.Paths;
 
 namespace Algorithms.Test
 {
@@ -27,6 +29,12 @@ namespace Algorithms.Test
 
             Console.WriteLine("Post-order traversal");
             DepthFirstSearch.PostOrder(root);
+
+            int[] array2 = { 8, 3, 5, 4, 9, 7, 2 };
+            var root2 = Construction.CreateTree(array2);
+            Console.WriteLine("Post-order traversal Iterative");
+            Postorder postorder = new Postorder();
+            postorder.PostorderTraversal(root2);
         }
 
         [TestMethod]
@@ -207,6 +215,19 @@ namespace Algorithms.Test
         }
 
         [TestMethod]
+        public void HasPaths()
+        {
+            int[] array = { 1, 2, 3, -1, 5 };
+            var root = Construction.CreateTree(array);
+
+            var paths = Paths.RootToLeafPaths(root);
+            foreach (var path in paths)
+            {
+                Console.WriteLine(path);
+            }
+        }
+
+        [TestMethod]
         public void HasPathSum()
         {
             int[] array = { 5, 4, 8, 11, 13, 4, 7, 2, 1 };
@@ -265,8 +286,8 @@ namespace Algorithms.Test
         {
             int[] array = { 1, 2, 3 };
             var root = Construction.CreateTree(array);
-
-            var result = SumRootToLeaf.SumNumbers(root);
+            SumRootToLeaf sumRootToLeaf = new SumRootToLeaf();
+            var result = sumRootToLeaf.SumNumbers(root);
             Assert.AreEqual(25, result);
         }
 
@@ -332,6 +353,17 @@ namespace Algorithms.Test
 
             var result = MaxPathSum.GetMaxPathSum(root);
             Assert.AreEqual(42, result);
+        }
+
+        [TestMethod]
+        public void GoodNodesCount()
+        {
+            int[] array = { 3, 3, -1, 4, 2 };
+            var root = Construction.CreateTree(array);
+            CountGoodNodes countGoodNodes = new CountGoodNodes();
+
+            var result = countGoodNodes.GoodNodesStaticCount(root);
+            Assert.AreEqual(3, result);
         }
     }
 

@@ -33,7 +33,7 @@ namespace Algorithms.BinarySearchTree
                         // Store the value, before turing left. This will be node from
                         // where last left was taken
                         temp = node;
-                        node = node.left;                     
+                        node = node.left;
                     }
                     else
                     {
@@ -42,6 +42,32 @@ namespace Algorithms.BinarySearchTree
                 }
             }
             return temp;
+        }
+
+        // Not good approach, use inorder traversal, store in list
+        // Get successor element i+1
+        public TreeNode InorderSuccessorUsingTraversal(TreeNode root, TreeNode p)
+        {
+            List<TreeNode> result = new List<TreeNode>();
+            Inorder(root, result);
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                var node = result[i];
+                if (node == p && i + 1 != result.Count)
+                {
+                    return result[i + 1];
+                }
+            }
+            return null;
+        }
+
+        private void Inorder(TreeNode root, List<TreeNode> result)
+        {
+            if (root == null) { return; }
+            Inorder(root.left, result);
+            result.Add(root);
+            Inorder(root.right, result);
         }
     }
 }

@@ -29,14 +29,19 @@ namespace Algorithms.Arrays
         public static int SubarraySumMap(int[] nums, int k)
         {
             int count = 0, sum = 0;
+            // Key is sum, and value is occurence
             Dictionary<int, int> map = new Dictionary<int, int>
             {
                 [0] = 1
+                // base case, as sum 0 means 1 available subarray, so count is incremented
             };
 
+            // We are doing prefix / left sum
             for (int i = 0; i < nums.Length; i++)
             {
                 sum += nums[i];
+                // if prefix sum - k is already seen, then we can increment count
+                // by value of that sum
                 if (map.ContainsKey(sum - k))
                 {
                     count += map[sum - k];

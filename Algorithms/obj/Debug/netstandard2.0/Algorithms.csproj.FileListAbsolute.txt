@@ -9,3 +9,16 @@ C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0
 C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\DS.dll
 C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\DS.pdb
 C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.csproj.CopyComplete
+C:\Users\AdiSekar\source\repos\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.csproj.CoreCompileInputs.cache
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.csprojAssemblyReference.cache
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.AssemblyInfoInputs.cache
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.AssemblyInfo.cs
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.csproj.CoreCompileInputs.cache
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\Algorithms.deps.json
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\Algorithms.dll
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\Algorithms.pdb
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\DS.dll
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\bin\Debug\netstandard2.0\DS.pdb
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.csproj.CopyComplete
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.dll
+C:\dev\Learning\VS 2019 - Projects\Algorithms_DS\Algorithms\obj\Debug\netstandard2.0\Algorithms.pdb

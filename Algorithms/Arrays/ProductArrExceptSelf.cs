@@ -61,15 +61,13 @@ namespace Algorithms.Arrays
             int product = 1;
             for (int i = 0; i < nums.Length; i++)
             {
-                product = product * nums[i];
-                left[i] = product;
+                left[i] = product * nums[i];
             }
 
             product = 1;
             for (int i = nums.Length - 1; i >= 0; i--)
             {
-                product = product * nums[i];
-                right[i] = product;
+                right[i] = product * nums[i];
             }
 
             for (int i = 1; i < nums.Length - 1; i++)

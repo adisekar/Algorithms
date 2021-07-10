@@ -10,7 +10,8 @@ namespace Algorithms.Arrays
         public static int[][] Merge(int[][] intervals)
         {
             List<int[]> merged = new List<int[]>();
-            intervals = intervals.OrderBy(j => j.First()).ToArray();
+            // Sort by start time
+            intervals = intervals.OrderBy(j => j[0]).ToArray();
             foreach (int[] interval in intervals)
             {
                 // if the current interval does not overlap with the previous, simply append it.
@@ -18,7 +19,7 @@ namespace Algorithms.Arrays
                 {
                     merged.Add(interval);
                 }
-                // otherwise, there is overlap, so we merge the current and previous intervals
+                // otherwise, there IS overlap, so we merge the current and previous intervals
                 else
                 {
                     merged.Last()[1] = Math.Max(merged.Last()[1], interval[1]);

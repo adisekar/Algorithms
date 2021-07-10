@@ -6815,20 +6815,20 @@
   },
   "packageFolders": {
     "C:\\Users\\AdiSekar\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AdiSekar\\source\\repos\\Algorithms_DS\\DS.Test\\DS.Test.csproj",
+      "projectUniqueName": "C:\\dev\\Learning\\VS 2019 - Projects\\Algorithms_DS\\DS.Test\\DS.Test.csproj",
       "projectName": "DS.Test",
-      "projectPath": "C:\\Users\\AdiSekar\\source\\repos\\Algorithms_DS\\DS.Test\\DS.Test.csproj",
+      "projectPath": "C:\\dev\\Learning\\VS 2019 - Projects\\Algorithms_DS\\DS.Test\\DS.Test.csproj",
       "packagesPath": "C:\\Users\\AdiSekar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AdiSekar\\source\\repos\\Algorithms_DS\\DS.Test\\obj\\",
+      "outputPath": "C:\\dev\\Learning\\VS 2019 - Projects\\Algorithms_DS\\DS.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
@@ -6845,9 +6845,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\AdiSekar\\source\\repos\\Algorithms_DS\\DS\\DS.csproj": {
-              "projectPath": "C:\\Users\\AdiSekar\\source\\repos\\Algorithms_DS\\DS\\DS.csproj"
+            "C:\\dev\\Learning\\VS 2019 - Projects\\Algorithms_DS\\DS\\DS.csproj": {
+              "projectPath": "C:\\dev\\Learning\\VS 2019 - Projects\\Algorithms_DS\\DS\\DS.csproj"
             }
           }
         }
@@ -6860,6 +6861,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "MSTest.TestAdapter": {
             "target": "Package",
@@ -6893,7 +6895,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   }

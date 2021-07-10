@@ -7,6 +7,8 @@ using Algorithms.Arrays.Peak;
 using Algorithms.Arrays.SortedArrays;
 using Algorithms.Arrays.TwoPointers;
 using Algorithms.Arrays.Intervals;
+using Algorithms.Arrays.MissingNumber;
+using Algorithms.Arrays.DivideAndConquer;
 
 namespace Algorithms.Test
 {
@@ -284,6 +286,68 @@ namespace Algorithms.Test
             {
                 Console.Write(num + " ");
             }
+        }
+
+        [TestMethod]
+        public void NumRescueBoats()
+        {
+            int[] people = { 3, 2, 2, 1 };
+            int limit = 3;
+            int result = RescueBoats.NumRescueBoats(people, limit);
+            Assert.AreEqual(3, result);
+        }
+
+        [TestMethod]
+        public void MergingTest()
+        {
+            int[] nums = { 2, 3, 5, 1, 4, 7 };
+            int mid = 0 + (nums.Length - 1) / 2;
+            Merging.Merge(nums, 0, mid, nums.Length - 1); ;
+            foreach (var r in nums)
+            {
+                Console.WriteLine(r);
+            }
+        }
+
+        [TestMethod]
+        public void MultipleMissingNumbersInUnsorted()
+        {
+            int[] nums = { 4, 3, 2, 7, 8, 2, 3, 1 };
+            MultipleMissingNumbersUnsorted missingNumbers = new MultipleMissingNumbersUnsorted();
+            var result = missingNumbers.FindDisappearedNumbers(nums);
+            Assert.AreEqual(5, result[0]);
+            Assert.AreEqual(6, result[1]);
+        }
+
+        [TestMethod]
+        public void ContainsNearbyAlmostDuplicate()
+        {
+            int[] nums = { 1, 5, 9, 1, 5, 9 };
+            int k = 2;
+            int t = 3;
+            var result = ContainsDuplicates.ContainsNearbyAlmostDuplicate(nums, k, t);
+            Assert.AreEqual(result, false);
+
+            int[] nums2 = { -2147483648, 2147483647 };
+            int k2 = 1;
+            int t2 = 1;
+            var result2 = ContainsDuplicates.ContainsNearbyAlmostDuplicate(nums2, k2, t2);
+            Assert.AreEqual(result2, false);
+        }
+
+        [TestMethod]
+        public void MultipleMissingNumbersInSortedArr()
+        {
+            int[] nums = { 4, 7, 9, 10 };
+            var missingNumbers = new MutipleMissingNumbersInSorted();
+            int k = 3;
+            var result = missingNumbers.MissingElement(nums, k);
+            Assert.AreEqual(8, result);
+
+            int[] nums2 = { 1, 2, 4 };
+            int k2 = 3;
+            var result2 = missingNumbers.MissingElement(nums2, k2);
+            Assert.AreEqual(6, result2);
         }
 
         [TestMethod]

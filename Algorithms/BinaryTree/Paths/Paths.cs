@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Text;
 using DS.BinaryTree;
 
-namespace Algorithms.BinaryTree
+namespace Algorithms.BinaryTree.Paths
 {
     public class Paths
     {
-        public IList<string> RootToLeafPaths(TreeNode root)
+        public static IList<string> RootToLeafPaths(TreeNode root)
         {
             IList<string> paths = new List<string>();
             DFS(root, "", paths);
             return paths;
         }
 
-        private void DFS(TreeNode node, string path, IList<string> paths)
+        private static void DFS(TreeNode node, string path, IList<string> paths)
         {
+            if (node == null || node.value == -1)
+            {
+                return;
+            }
 
             path += node.value;
 
@@ -24,9 +28,12 @@ namespace Algorithms.BinaryTree
             {
                 paths.Add(path);
             }
-
-            DFS(node.left, path + "->", paths);
-            DFS(node.right, path + "->", paths);
+            else
+            {
+                path += "->";
+                DFS(node.left, path, paths);
+                DFS(node.right, path, paths);
+            }
         }
     }
 }

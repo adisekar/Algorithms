@@ -65,18 +65,24 @@ namespace Algorithms.Test
         [TestMethod]
         public void SurroundedRegionsDFS()
         {
-            char[][] grid = {new char[] {'X', 'X','X', 'X'},
-                                     new char[] {'X', 'O', 'O', 'X', '0' },
-                                     new char [] {'X', 'X', 'O', 'X'},
-                                     new char [] {'X', 'O', 'X', 'X' }
+            char[][] grid = {new char[] {'X','X', 'X','X'},
+                                     new char[] { 'X', 'O','O', 'X'},
+                                     new char [] {'X','X', 'O', 'X'},
+                                     new char [] { 'X', 'O', 'X', 'X'}
                                         };
 
-            SurroundedRegions.Solve(grid);
-            for (int i = 0; i < grid.Length; i++)
+            char[][] grid2 = {new char[] {'X','O', 'X','O', 'X', 'O'},
+                                     new char[] { 'O', 'X','O', 'X','O', 'X'},
+                                     new char [] {'X','O', 'X','O', 'X', 'O'},
+                                     new char [] { 'O', 'X', 'O', 'X', 'O', 'X' }
+                                        };
+            SurroundedRegions surroundedRegions = new SurroundedRegions();
+            surroundedRegions.Solve2(grid2);
+            for (int i = 0; i < grid2.Length; i++)
             {
-                for (int j = 0; j < grid[i].Length; j++)
+                for (int j = 0; j < grid2[i].Length; j++)
                 {
-                    Console.Write(grid[i][j]);
+                    Console.Write(grid2[i][j]);
                 }
                 Console.WriteLine();
             }
@@ -139,6 +145,19 @@ namespace Algorithms.Test
             string word = "ABCCED";
             var result = WordSearch.Exist(board, word);
             Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void NumOfDistinctIslands()
+        {
+            int[][] grid = {new int[] {1,1,0,0,0 },
+                                     new int[] {1,1,0,0,0 },
+                                     new int [] {0,0,0,1,1 },
+                                      new int [] {0,0,0,1,1 }
+                                        };
+            NumberOfDistinctIslands distinctIslands = new NumberOfDistinctIslands();
+            var result = distinctIslands.NumDistinctIslands(grid);
+            Assert.AreEqual(1, result);
         }
     }
 }

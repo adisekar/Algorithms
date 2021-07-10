@@ -9,47 +9,44 @@ namespace Algorithms.Arrays
         public static IList<int> SpiralOrder(int[][] matrix)
         {
             IList<int> result = new List<int>();
-
-            if (matrix.Length == 0)
-                return result;
-
-            int sr = 0;
-            int er = matrix.Length - 1;
-            int sc = 0;
-            int ec = matrix[0].Length - 1;
-
-            while (sr <= er && sc <= ec)
+            if (matrix == null || matrix.Length == 0)
             {
-                // Col Incr
-                for (int j = sc; j <= ec; j++)
-                {
-                    result.Add(matrix[sr][j]);
-                }
+                return result;
+            }
 
-                // Row Incr
-                for (int i = sr + 1; i <= er; i++)
-                {
-                    result.Add(matrix[i][ec]);
-                }
-                if (sr < er && sc < ec)
-                {
-                    // Col Decr
-                    for (int j = ec - 1; j > sc; j--)
-                    {
-                        result.Add(matrix[er][j]);
-                    }
+            int top = 0;
+            int down = matrix.Length - 1;
+            int left = 0;
+            int right = matrix[0].Length - 1;
 
-                    // Row Decr
-                    for (int i = er; i > sr; i--)
-                    {
-                        result.Add(matrix[i][sc]);
-                    }
-                }
+            int matrixSize = matrix.Length * matrix[0].Length;
 
-                sr++;
-                er--;
-                sc++;
-                ec--;
+            // while(top <= down && left <= right){
+            while (result.Count < matrixSize)
+            {
+                for (int i = left; i <= right && result.Count < matrixSize; i++)
+                {
+                    result.Add(matrix[top][i]);
+                }
+                top++;
+
+                for (int i = top; i <= down && result.Count < matrixSize; i++)
+                {
+                    result.Add(matrix[i][right]);
+                }
+                right--;
+
+                for (int i = right; i >= left && result.Count < matrixSize; i--)
+                {
+                    result.Add(matrix[down][i]);
+                }
+                down--;
+
+                for (int i = down; i >= top && result.Count < matrixSize; i--)
+                {
+                    result.Add(matrix[i][left]);
+                }
+                left++;
             }
             return result;
         }

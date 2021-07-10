@@ -22,5 +22,32 @@ namespace DS.Test
             }
 
         }
+
+        [TestMethod]
+        public void MaxHeapConstruction()
+        {
+            int[] arr = { 2, 5, 8, 9, 4, 10, 7 };
+            MaxHeap maxHeap = new MaxHeap(arr.Length);
+            var result = maxHeap.BuildHeap(arr);
+
+            foreach (var num in result)
+            {
+                Console.WriteLine(num);
+            }
+            maxHeap.Remove();
+            maxHeap.Remove();
+            maxHeap.Remove();
+            maxHeap.Remove();
+            Console.WriteLine("------------------");
+            //for (int i = 0; i < maxHeap.count; i++)
+            //{
+            //    Console.WriteLine(arr[i]);
+            //}
+
+            foreach (var num in arr)
+            {
+                Console.WriteLine(num);
+            }
+        }
     }
 }

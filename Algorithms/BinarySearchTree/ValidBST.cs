@@ -54,13 +54,40 @@ namespace Algorithms.BinarySearchTree
 
         public void Validate(TreeNode root)
         {
-            if (root == null)
+            if (root == null || root.value == -1)
             {
                 return;
             }
             Validate(root.left);
             nodes.Add(root.value);
             Validate(root.right);
+        }
+
+        // 3rd approach iterative
+        public bool IsValidBSTIterative(TreeNode root)
+        {
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            TreeNode prev = null;
+
+            while (stack.Count > 0 || root != null)
+            {
+                // Add root and all left nodes to stack
+                while (root != null)
+                {
+                    stack.Push(root);
+                    root = root.left;
+                }
+                root = stack.Pop();
+
+                if (prev != null && root.value <= prev.value)
+                {
+                    return false;
+                }
+                prev = root;
+                // traverse right subtree
+                root = root.right;
+            }
+            return true;
         }
     }
 }

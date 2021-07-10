@@ -34,6 +34,7 @@ namespace Algorithms.SlidingWindow
             return result;
         }
 
+        // Same as solution of Final all permutations in string
         public static IList<int> FindAnagrams(string s, string p)
         {
             IList<int> result = new List<int>();
@@ -47,43 +48,22 @@ namespace Algorithms.SlidingWindow
             int[] sArr = new int[26];
             for (int i = 0; i < p.Length; i++)
             {
-                char c = p[i];
-                var index = c - 'a';
-                pArr[index]++;
+                pArr[p[i] - 'a']++;
+                sArr[s[i] - 'a']++;
             }
 
-            // Initial population of values, till window size - 1
-            for (int i = 0; i < p.Length - 1; i++)
+            for (int i = 0; i <= s.Length - p.Length; i++)
             {
-                char c = s[i];
-                var index = c - 'a';
-                sArr[index]++;
-            }
-
-            int left = 0;
-            int right = p.Length - 1;
-            // Start from window size and go till n - window length
-            while (left <= s.Length - p.Length)
-            {
-                // Add to window
-                var rightCharIndex = s[right] - 'a';
-                sArr[rightCharIndex]++;
-                int startIdx = right - (p.Length - 1);
                 if (IsAnagram(sArr, pArr))
                 {
-                    result.Add(startIdx);
+                    result.Add(i);
                 }
-                // Increment right
-                right++;
 
-                // Remove from window    
-                var leftCharIndex = s[left] - 'a';
-                sArr[leftCharIndex]--;
-                left++;
+                sArr[s[i + p.Length] - 'a']++;
+                sArr[s[i] - 'a']--;
             }
             return result;
         }
-
         private static bool IsAnagram(int[] sArr, int[] pArr)
         {
             for (int i = 0; i < 26; i++)

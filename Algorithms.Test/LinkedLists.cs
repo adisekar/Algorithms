@@ -158,10 +158,12 @@ namespace Algorithms.Test
             cache.Get(1);       // returns -1 (not found)
             cache.Get(3);       // returns 3
             cache.Get(4);       // returns 4
-            var result = cache.PrintList(cache.head);
-            foreach (var num in result)
+
+            var temp = cache.head;
+            while (temp != null)
             {
-                Console.WriteLine(num);
+                Console.WriteLine(temp.val);
+                temp = temp.next;
             }
         }
     }

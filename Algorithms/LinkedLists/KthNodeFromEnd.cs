@@ -27,7 +27,7 @@ namespace Algorithms.LinkedLists
                 p = p.next;
                 q = q.next;
             }
-            // Delete head
+            // Delete nth node
             q.next = q.next.next;
             return dummy.next;
         }

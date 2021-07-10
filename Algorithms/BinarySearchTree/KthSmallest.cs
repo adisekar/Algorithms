@@ -33,5 +33,32 @@ namespace Algorithms.BinarySearchTree
             int right = KthSmallestElement(root.right, k);
             return right;
         }
+
+        // 2nd Approach
+        /// Inorder Traversal and store in array. Now find K - 1
+        public int KthSmallestUsingInorder(TreeNode root, int k)
+        {
+            List<int> list = new List<int>();
+
+            DFS(root, list);
+
+            var arr = list.ToArray();
+            return arr[k - 1];
+        }
+
+        public void DFS(TreeNode root, List<int> list)
+        {
+            if (root == null)
+            {
+                return;
+            }
+
+            DFS(root.left, list);
+            if (root != null)
+            {
+                list.Add(root.value);
+            }
+            DFS(root.right, list);
+        }
     }
 }

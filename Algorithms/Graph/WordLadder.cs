@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Algorithms.Strings;
 
 namespace Algorithms.Graph
 {
-    public class WordLadder
+    public class WordLadder2
     {
         /*
          * Input:
@@ -34,7 +36,12 @@ Visited dictionary would need a space of O(M \times N)O(M×N) as each word is of
 Queue for BFS in worst case would need a space for all O(N)O(N) words and this would also result in a space complexity of O(M \times N)O(M×N).
 Combining the above steps, the overall space complexity is O({M}^2 \times N)O(M 
 2 ×N) + O(M * N)O(M∗N) + O(M * N)O(M∗N) = O({M}^2 \times N)O(M2×N) space.
-         */
+
+        */
+
+        // For each word, loop thru entire wordlist to see if they are one distance away, and can be converted.
+        // If wordlist is huge corpus dictionary, it is not good. Better approach to loop a to z and add it in every
+        // position of word and see if it matches any of the words in wordList.
         public static int LadderLength(string beginWord, string endWord, List<string> wordList)
         {
 

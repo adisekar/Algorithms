@@ -23,7 +23,28 @@ namespace Algorithms.LinkedLists
             return prev; // Contains head or last element, as curr goes to null
         }
 
-        public static ListNode ReverseListRecursive(ListNode head)
+        ListNode first = null;
+        // Best approach for recursion. p = curr, q = prev
+        public ListNode ReverseListRecursive(ListNode head)
+        {
+            Recursive(head, null);
+            return first;
+        }
+
+        public void Recursive(ListNode p, ListNode q)
+        {
+            if (p != null)
+            {
+                Recursive(p.next, p); // Move q to p;
+                p.next = q;
+            }
+            else
+            {
+                first = q; // First element of list
+            }
+        }
+
+        public static ListNode ReverseListRecursive2(ListNode head)
         {
             if (head == null || head.next == null)
             {
