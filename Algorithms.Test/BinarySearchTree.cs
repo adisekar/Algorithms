@@ -88,7 +88,7 @@ namespace Algorithms.Test
             var root = bst.BstFromPreorderRecursive(A);
 
             DepthFirstSearch.PreOrder(root);
-            
+
         }
 
         [TestMethod]
@@ -99,6 +99,16 @@ namespace Algorithms.Test
             ValidBST bst = new ValidBST();
 
             var result = bst.IsValidBST(root);
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void FindTwoSumBST()
+        {
+            int[] array = { 5, 3, 6, 2, 4, -1, 7 };
+            int target = 9;
+            var root = Construction.CreateTree(array);
+            bool result = TwoSumBST.FindTargetBFS(root, target);
             Assert.AreEqual(true, result);
         }
     }

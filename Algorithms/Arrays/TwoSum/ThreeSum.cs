@@ -49,47 +49,41 @@ namespace Algorithms.Arrays
         public IList<IList<int>> ThreeSum(int[] nums)
         {
             IList<IList<int>> result = new List<IList<int>>();
+            // To remove duplicates. Sort array, and check for contains
             Array.Sort(nums);
 
             for (int i = 0; i < nums.Length - 2; i++)
             {
+                if (i > 0 && nums[i] == nums[i - 1]) { continue; }
 
-                if (i == 0 || nums[i] > nums[i - 1])
+                int left = i + 1;
+                int right = nums.Length - 1;
+                while (left < right)
                 {
-                    int start = i + 1;
-                    int end = nums.Length - 1;
-
-                    while (start < end)
+                    int sum = nums[i] + nums[left] + nums[right];
+                    if (sum == 0)
                     {
-                        if (nums[i] + nums[start] + nums[end] == 0)
+                        result.Add(new List<int>() { nums[i], nums[left], nums[right] });
+                        left++; // can move left or right
+                        // Loop to remove next duplicates
+                        while (nums[left] == nums[left - 1] && left < right)
                         {
-                            result.Add(new List<int>() { nums[i], nums[start], nums[end] });
+                            left++;
                         }
-
-                        if (nums[i] + nums[start] + nums[end] < 0)
-                        {
-                            int curStart = start;
-                            // Skip duplicates
-                            while (nums[curStart] == nums[start] && start < end)
-                            {
-                                start++;
-                            }
-                        }
-                        else
-                        {          //nums[i] + nums[start] + nums[end] > 0
-                            int curEnd = end;
-                            // Skip duplicates
-                            while (nums[curEnd] == nums[end] && start < end)
-                            {
-                                end--;
-                            }
-                        }
+                    }
+                    else if (sum > 0)
+                    {
+                        right--;
+                    }
+                    else
+                    {
+                        left++;
                     }
                 }
             }
             return result;
         }
 
-        // To Do - 3 rd approach using hashSet like 2 sum. Fix 2 numbers, and check set
+        // To Do - 3 rd approach using hashSet like 2 sum. Fix 2 numbers, and check set. Not possible for duplicates
     }
 }
