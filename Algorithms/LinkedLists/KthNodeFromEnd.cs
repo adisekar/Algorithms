@@ -9,26 +9,28 @@ namespace Algorithms.LinkedLists
     {
         public ListNode RemoveNthFromEnd(ListNode head, int n)
         {
-            ListNode dummy = new ListNode(0);
+            ListNode dummy = new ListNode(-1);
             dummy.next = head;
-            ListNode p = dummy;
-            ListNode q = dummy;
+            ListNode l = dummy;
+            ListNode r = head;
 
-            int counter = 0;
-            // Loop p till n + 1
-            while (counter != n + 1)
+            // Move Right r ptr n places, so it starts from here
+            int count = 0;
+            while (count < n)
             {
-                p = p.next;
-                counter++;
+                r = r.next;
+                count++;
             }
 
-            while (p != null)
+            // Move Left l and right r pointers
+            while (r != null)
             {
-                p = p.next;
-                q = q.next;
+                r = r.next;
+                l = l.next;
             }
-            // Delete nth node
-            q.next = q.next.next;
+            // Reassign the left pointer, skipping the deleted (nth) node
+            l.next = l.next.next;
+
             return dummy.next;
         }
     }

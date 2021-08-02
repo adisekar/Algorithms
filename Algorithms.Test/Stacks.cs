@@ -35,5 +35,17 @@ namespace Algorithms.Test
             var result = BackspaceStringCompare.BackspaceCompare(S, T);
             Assert.AreEqual(true, result);
         }
+
+        [TestMethod]
+        public void LargestRectangularAreaInHistogram()
+        {
+            int[] heights = { 2, 1, 5, 6, 2, 3 };
+            var result = Histogram.LargestRectangleArea(heights);
+            Assert.AreEqual(10, result);
+
+            int[] heights2 = { 5,4,1,2 };
+            var result2 = Histogram.LargestRectangleArea(heights2);
+            Assert.AreEqual(8, result2);
+        }
     }
 }

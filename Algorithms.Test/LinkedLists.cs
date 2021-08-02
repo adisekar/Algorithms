@@ -166,5 +166,48 @@ namespace Algorithms.Test
                 temp = temp.next;
             }
         }
+
+        [TestMethod]
+        public void SwapNodes()
+        {
+            //LinkedList l = new LinkedList();
+            //l.InsertAtStart(1);
+            //l.InsertAtEnd(2);
+            //l.InsertAtEnd(3);
+            //l.InsertAtEnd(4);
+            //l.InsertAtEnd(5);
+
+            //int k = 2;
+            //SwapNodesKFromStartAndEnd.SwapNodes(l.head, k);
+
+            //var temp = l.head;
+            //while (temp != null)
+            //{
+            //    Console.WriteLine(temp.val);
+            //    temp = temp.next;
+            //}
+
+            LinkedList l = new LinkedList();
+            l.InsertAtStart(7);
+            l.InsertAtEnd(9);
+            l.InsertAtEnd(6);
+            l.InsertAtEnd(6);
+            l.InsertAtEnd(7);
+            l.InsertAtEnd(8);
+            l.InsertAtEnd(3);
+            l.InsertAtEnd(0);
+            l.InsertAtEnd(9);
+            l.InsertAtEnd(5);
+
+            int k = 5;
+            SwapNodesKFromStartAndEnd.SwapNodes(l.head, k);
+
+            var temp = l.head;
+            while (temp != null)
+            {
+                Console.WriteLine(temp.val);
+                temp = temp.next;
+            }
+        }
     }
 }

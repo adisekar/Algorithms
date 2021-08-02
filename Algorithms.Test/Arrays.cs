@@ -9,6 +9,7 @@ using Algorithms.Arrays.TwoPointers;
 using Algorithms.Arrays.Intervals;
 using Algorithms.Arrays.MissingNumber;
 using Algorithms.Arrays.DivideAndConquer;
+using Algorithms.Arrays.SubArray;
 
 namespace Algorithms.Test
 {
@@ -462,6 +463,14 @@ namespace Algorithms.Test
             {
                 Console.WriteLine(s);
             }
+        }
+
+        [TestMethod]
+        public void FindMaxSubArrMinProduct()
+        {
+            int[] array = {2,3,3,1,2 };
+            var result = MaxSubArrayMinProduct.FindMinProduct(array);
+            Assert.AreEqual(18, result);
         }
     }
 }
