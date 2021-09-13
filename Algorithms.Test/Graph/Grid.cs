@@ -77,7 +77,7 @@ namespace Algorithms.Test
                                      new char [] { 'O', 'X', 'O', 'X', 'O', 'X' }
                                         };
             SurroundedRegions surroundedRegions = new SurroundedRegions();
-            surroundedRegions.Solve2(grid2);
+            surroundedRegions.SolveBest(grid2);
             for (int i = 0; i < grid2.Length; i++)
             {
                 for (int j = 0; j < grid2[i].Length; j++)

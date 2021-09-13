@@ -23,7 +23,7 @@ namespace Algorithms.Stack
         }
 
         // Can be done using 1 stack, and clearing it out after left to right
-        public int LargestRectangleArea(int[] heights)
+        public static int LargestRectangleArea(int[] heights)
         {
             Stack<int> lStack = new Stack<int>();
             Stack<int> rStack = new Stack<int>();

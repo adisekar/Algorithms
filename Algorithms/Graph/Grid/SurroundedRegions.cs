@@ -106,7 +106,7 @@ namespace Algorithms.Graph.Grid
                     {
                         board[i][j] = 'X';
                     }
-                    if (board[i][j] == '1')
+                    else if (board[i][j] == '1')
                     {
                         board[i][j] = 'O';
                     }
@@ -133,6 +133,59 @@ namespace Algorithms.Graph.Grid
             DFS(grid, i - 1, j, visited);
             DFS(grid, i, j + 1, visited);
             DFS(grid, i, j - 1, visited);
+        }
+
+        // Almost same as Solve2
+        public void SolveBest(char[][] board)
+        {
+            for (int i = 0; i < board.Length; i++)
+            {
+                for (int j = 0; j < board[i].Length; j++)
+                {
+                    if ((i == 0 || i == board.Length - 1) || (j == 0 || j == board[i].Length - 1))
+                    {
+                        if (board[i][j] == 'O')
+                        {
+                            DFSBest(board, i, j);
+                        }
+                    }
+                }
+            }
+
+            // Loop m*n again and change 1 to O and change O to X
+            for (int i = 0; i < board.Length; i++)
+            {
+                for (int j = 0; j < board[i].Length; j++)
+                {
+                    // Middle items, not connected to border are surrounded
+                    if (board[i][j] == 'O')
+                    {
+                        board[i][j] = 'X';
+                    }
+                    else if (board[i][j] == '1')
+                    {
+                        board[i][j] = 'O';
+                    }
+                }
+            }
+        }
+
+        private void DFSBest(char[][] board, int i, int j)
+        {
+            // Guard check
+            if (i < 0 || i > board.Length - 1 || j < 0 || j > board[i].Length - 1 || board[i][j] != 'O')
+            {
+                return;
+            }
+
+            if (board[i][j] == 'O')
+            {
+                board[i][j] = '1';
+            }
+            DFSBest(board, i + 1, j);
+            DFSBest(board, i - 1, j);
+            DFSBest(board, i, j + 1);
+            DFSBest(board, i, j - 1);
         }
     }
 }

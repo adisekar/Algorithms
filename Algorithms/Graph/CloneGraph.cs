@@ -6,6 +6,26 @@ namespace Algorithms.Graph
 {
     public class CloneGraph
     {
+        Dictionary<Node, Node> map = new Dictionary<Node, Node>();
+        public Node DFS(Node node)
+        {
+            if(node == null) { return null; }
+            if (map.ContainsKey(node))
+            {
+                return map[node];
+            }
+
+            // Else create copy node, if does not exist
+            Node copy = new Node(node.val);
+            map.Add(node, copy);
+
+            // For each neighbor of original, call DFS to get copy node and add to list
+            foreach(var neighbor in node.neighbors)
+            {
+                copy.neighbors.Add(DFS(neighbor));
+            }
+            return copy;
+        }
         public Node BFS(Node node)
         {
             if (node == null)
